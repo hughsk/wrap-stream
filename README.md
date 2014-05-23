@@ -2,6 +2,8 @@
 
 Wrap the output of a stream with a prefix and/or suffix.
 
+Streams2 compliant.
+
 ## Usage ##
 
 [![wrap-stream](https://nodei.co/npm/wrap-stream.png?mini=true)](https://nodei.co/npm/wrap-stream)

@@ -1,4 +1,4 @@
-var through = require('through')
+var through = require('through2')
 
 module.exports = wrap
 
@@ -9,17 +9,18 @@ function wrap(pre, post) {
 
   return through(write, end)
 
-  function write(data) {
+  function write(data, enc, cb) {
     if (first) {
-      if (send_pre) this.queue(pre)
+      if (send_pre) this.push(pre)
       first = false
     }
 
-    this.queue(data)
+    this.push(data)
+    cb()
   }
 
   function end() {
-    if (send_post) this.queue(post)
-    this.queue(null)
+    if (send_post) this.push(post)
+    this.push(null)
   }
 }
