@@ -11,7 +11,9 @@ function wrap(pre, post) {
 
   function write(data, enc, cb) {
     if (first) {
-      if (send_pre) this.push(pre)
+      if (send_pre) {
+        this.push(pre)
+      }
       first = false
     }
 
@@ -20,7 +22,12 @@ function wrap(pre, post) {
   }
 
   function end() {
-    if (send_post) this.push(post)
+    if (first && send_pre) {
+      this.push(pre)
+    }
+    if (send_post) {
+      this.push(post)
+    }
     this.push(null)
   }
 }
